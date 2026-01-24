@@ -1,0 +1,599 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors */
+    --surface-brand: #C84C09;
+    --surface-brand-hover: #B34509;
+    --bg-primary: #0C0D0D;
+    --bg-secondary: rgba(52, 52, 52, 0.24);
+    /* #343434 24% opacity */
+    --text-color: #FBFBFB;
+    --border-color: rgba(200, 76, 9, 0.24);
+    /* #C84C09 24% opacity */
+
+    /* Grid System */
+    --container-width: 1312px;
+    /* 1440px - (64px * 2) margins */
+    --page-margin: 64px;
+    --gutter: 24px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-color);
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    line-height: 1.5;
+}
+
+/* Typography */
+h1 {
+    font-size: 54px;
+    font-weight: 800;
+    /* ExtraBold */
+    line-height: 1.25;
+}
+
+.h3 {
+    font-size: 48px;
+    font-weight: 700;
+    /* Bold */
+    line-height: 1.25;
+}
+
+.subheading {
+    font-size: 24px;
+    font-weight: 600;
+    /* SemiBold */
+    line-height: 1.5;
+}
+
+.body-text,
+p {
+    font-size: 16px;
+    font-weight: 400;
+    /* Regular */
+    line-height: 1.5;
+}
+
+.highlight {
+    color: var(--surface-brand);
+}
+
+/* Background Patterns */
+.bg-pattern-primary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/Diagonal Lines.png');
+    opacity: 0.4;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bg-pattern-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/Bg lines.png');
+    opacity: 0.02;
+    z-index: -1;
+    pointer-events: none;
+    background-size: cover;
+}
+
+/* Layout Utilities */
+.page-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.site-header {
+    padding: 32px var(--page-margin) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+
+
+
+.nav-container {
+    width: 100%;
+    max-width: var(--container-width);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 32px;
+    height: auto;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border: none;
+    color: var(--text-color);
+}
+
+.btn-primary {
+    background-color: var(--surface-brand);
+}
+
+.btn-primary:hover {
+    background-color: var(--surface-brand-hover);
+}
+
+.btn-secondary {
+    background-color: #323232;
+}
+
+.btn-secondary:hover {
+    background-color: var(--surface-brand);
+}
+
+.hero-container {
+    width: 100%;
+    max-width: var(--container-width);
+}
+
+
+
+.hero-card {
+    background-color: var(--bg-secondary);
+    border-radius: 32px;
+    /* Large radius for the card */
+    height: 577px;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    /* Clip contents like image */
+    position: relative;
+}
+
+.hero-content {
+    flex: 1.5;
+    min-width: 800px;
+    padding: 80px 64px 80px 32px;
+    /* Visual spacing approximation */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    white-space: normal;
+}
+
+.eyebrow {
+    font-size: 24px;
+    /* Subheading */
+    font-weight: 600;
+    margin-bottom: 24px;
+    display: block;
+}
+
+.hero-image-wrapper {
+    flex: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.hero-img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    /* Adjust position if needed based on the image's inherent padding/composition */
+}
+
+/* ========================================
+   Main Content Group (Building + Quote)
+   ======================================== */
+.main-content-group {
+    padding: 64px var(--page-margin);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.building-container {
+    width: 100%;
+    max-width: var(--container-width);
+}
+
+.section-header {
+    margin-bottom: 32px;
+}
+
+.section-header h2 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 8px;
+}
+
+.section-subheading {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.building-content {
+    width: 100%;
+    max-width: 1312px;
+    height: 599px;
+    background-color: var(--bg-secondary);
+    border-radius: 32px;
+    display: flex;
+    gap: 64px;
+    overflow: hidden;
+}
+
+/* Left Side - Stilly Card */
+.stilly-card {
+    width: 644px;
+    height: 100%;
+    position: relative;
+    padding: 32px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stilly-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.stilly-overlay {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.stilly-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.stilly-badge {
+    display: inline-block;
+    width: fit-content;
+    background-color: #666666;
+    padding: 8px 16px;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.stilly-description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 400px;
+}
+
+.stilly-overlay .btn {
+    align-self: flex-start;
+}
+
+/* Right Side - Features Container */
+.features-container {
+    width: 429px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    padding: 32px 16px 32px 48px;
+}
+
+.feature-item {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.feature-icon {
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding-top: 12px;
+}
+
+.feature-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.feature-text h3 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.feature-text p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+
+/* ========================================
+   Footer Group (Follow + Footer)
+   ======================================== */
+.footer-group {
+    padding: 0 var(--page-margin) 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+/* Follow the Build Section */
+.follow-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.follow-container {
+    width: 100%;
+    max-width: var(--container-width);
+}
+
+.follow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.follow-card {
+    width: 100%;
+    /* Max width implicitly handled by grid, target 422px approx */
+    height: 249px;
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; Removed to group text */
+    height: 100%;
+    z-index: 2;
+    position: relative;
+    width: 60%;
+    /* Ensure content doesn't overlap image too much */
+}
+
+.follow-card .subheading {
+    /* Assuming subheading font size from user request "Heading in subheading font size" which is 24px defined in root */
+    margin-bottom: 8px;
+}
+
+.card-text-wrapper {
+    height: 72px;
+    /* Fixed height container */
+    overflow: hidden;
+    /* Prevent spillover if too long */
+    display: flex;
+    align-items: flex-start;
+}
+
+.follow-card .btn {
+    padding: 8px 12px;
+    width: 156px;
+    justify-content: space-between;
+    /* Text left, icon right */
+    align-items: center;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+.card-bg-img {
+    position: absolute;
+    right: -20px;
+    /* Reset offset for smaller image */
+    bottom: -20px;
+    height: 170px;
+    width: 170px;
+    object-fit: contain;
+    opacity: 0.5;
+    /* Ensure opacity is 50% */
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Specific adjustments per card if needed for image positioning */
+.follow-card:nth-child(2) .card-bg-img {
+    right: -10px;
+    bottom: -10px;
+}
+
+/* Quote styles */
+.quote-container {
+    width: 100%;
+    max-width: var(--container-width);
+}
+
+.quote-card {
+    background-color: var(--bg-secondary);
+    border-radius: 32px;
+    padding: 32px 172px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.quote-icon {
+    margin-bottom: 4px;
+}
+
+.quote-text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-bottom: 32px;
+}
+
+.quote-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 24px;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    margin-bottom: 16px;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.profile-role {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #A6A6A6;
+}
+
+.quote-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.btn-social {
+    width: 194px;
+    background-color: #323232;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-social .btn-left {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-social:hover {
+    background-color: var(--surface-brand);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .hero-card {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .hero-content {
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: var(--container-width);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright,
+.footer-slogan {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.4;
+}
