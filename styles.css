@@ -19,7 +19,8 @@
     /* Grid System */
     --container-width: 1312px;
     /* 1440px - (64px * 2) margins */
-    --page-margin: 64px;
+    --page-margin: clamp(16px, 5vw, 64px);
+    /* Fluid margin */
     --gutter: 24px;
 }
 
@@ -31,25 +32,30 @@ body {
     min-height: 100vh;
     position: relative;
     line-height: 1.5;
+    overflow-wrap: break-word;
+    /* Prevent text overflow */
 }
 
 /* Typography */
 h1 {
-    font-size: 54px;
+    font-size: clamp(32px, 5vw + 1rem, 54px);
+    /* Fluid typography */
     font-weight: 800;
     /* ExtraBold */
     line-height: 1.25;
 }
 
 .h3 {
-    font-size: 48px;
+    font-size: clamp(32px, 4vw + 1rem, 48px) !important;
+    /* Fluid typography with override for inline style if needed, though inline style should be removed ideally */
     font-weight: 700;
     /* Bold */
     line-height: 1.25;
 }
 
 .subheading {
-    font-size: 24px;
+    font-size: clamp(20px, 3vw, 24px);
+    /* Fluid typography */
     font-weight: 600;
     /* SemiBold */
     line-height: 1.5;
@@ -57,10 +63,19 @@ h1 {
 
 .body-text,
 p {
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
+    /* Fluid typography */
     font-weight: 400;
     /* Regular */
     line-height: 1.5;
+}
+
+/* Responsive Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    /* Removes bottom space */
 }
 
 .highlight {
@@ -189,13 +204,14 @@ p {
 
 .hero-content {
     flex: 1.5;
-    min-width: 800px;
-    padding: 80px 64px 80px 32px;
-    /* Visual spacing approximation */
+    /* min-width: 800px;  Removed fixed min-width */
+    padding: 80px clamp(16px, 5vw, 64px) 80px clamp(16px, 3vw, 32px);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
     z-index: 1;
+    text-align: left;
 }
 
 .hero-content h1 {
@@ -266,18 +282,24 @@ p {
 .building-content {
     width: 100%;
     max-width: 1312px;
-    height: 599px;
+    height: 500px;
     background-color: var(--bg-secondary);
     border-radius: 32px;
     display: flex;
-    gap: 64px;
+    flex-wrap: wrap;
+    /* Allow wrapping */
+    gap: 24px;
     overflow: hidden;
 }
 
 /* Left Side - Stilly Card */
 .stilly-card {
-    width: 644px;
-    height: 100%;
+    flex: 1;
+    min-width: 300px;
+    /* Ensure it doesn't get too small */
+    /* width: 644px; Removed fixed width */
+    min-height: 400px;
+    /* Visual balance */
     position: relative;
     padding: 32px 16px;
     display: flex;
@@ -315,7 +337,7 @@ p {
     width: fit-content;
     background-color: #666666;
     padding: 8px 16px;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 600;
     border-radius: 8px;
 }
@@ -333,12 +355,16 @@ p {
 
 /* Right Side - Features Container */
 .features-container {
-    width: 429px;
+    flex: 1;
+    min-width: 300px;
+    /* Ensure it doesn't get too small */
+    /* width: 429px; Removed fixed width */
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 32px;
-    padding: 32px 16px 32px 48px;
+    padding: 32px 16px 32px 32px;
+    /* Reduced left padding */
 }
 
 .feature-item {
@@ -376,6 +402,8 @@ p {
     font-weight: 400;
     line-height: 1.5;
     opacity: 0.85;
+    max-width: 380px;
+    /* Force text to wrap to 3 lines */
 }
 
 
@@ -542,7 +570,10 @@ p {
 }
 
 .btn-social {
-    width: 194px;
+    /* width: 194px; Removed fixed width */
+    min-width: 160px;
+    padding: 12px 16px;
+    gap: 16px;
     background-color: #323232;
     display: flex;
     align-items: center;
@@ -559,19 +590,176 @@ p {
     background-color: var(--surface-brand);
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
+/* ========================================
+   Responsive Breakpoints
+   ======================================== */
+
+/* Tablet (<= 800px) */
+@media (max-width: 800px) {
+    :root {
+        --page-margin: 24px;
+    }
+
+    /* Header - Revert to Horizontal */
+    .nav-container {
+        flex-direction: row;
+        gap: 0;
+        /* Reset gap or keep default spacing */
+    }
+
+    /* Stack Hero */
     .hero-card {
         flex-direction: column;
         height: auto;
     }
 
     .hero-content {
-        padding: 40px;
+        padding: 48px 32px;
+        min-width: unset;
+        align-items: center;
+        text-align: center;
     }
 
-    h1 {
-        font-size: 40px;
+    /* Remove Cube Image */
+    .hero-image-wrapper {
+        display: none;
+    }
+
+    /* Typography Adjustments */
+    .section-header h2,
+    .h3 {
+        font-size: 38px !important;
+        /* Reduced from 48px */
+    }
+
+    .section-subheading {
+        font-size: 18px;
+        /* Reduced from 24px */
+    }
+
+    /* Building Section */
+    .building-content {
+        flex-direction: column !important;
+        gap: 0;
+        height: auto;
+    }
+
+    .stilly-card {
+        min-height: 400px;
+        width: 100%;
+        padding: 16px 16px;
+    }
+
+    .stilly-badge {
+        font-size: 21px;
+        /* Set to 32px */
+    }
+
+    .stilly-overlay {
+        flex: 1;
+        height: auto;
+        justify-content: space-between;
+        /* Ensure button stays at bottom */
+    }
+
+    .features-container {
+        width: 100%;
+        padding: 48px 24px;
+    }
+
+    /* Quote Section */
+    .quote-card {
+        padding: 48px 24px;
+    }
+
+    /* Follow Grid - 2 Columns */
+    .follow-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Follow Cards - Increase Text Width */
+    .card-content {
+        width: 100%;
+        /* Increase from 60% so text doesn't drown */
+        z-index: 2;
+        /* Keep text above image */
+    }
+
+    /* Optional: adjustments to allow text to be readable over image if they overlap now */
+    .card-bg-img {
+        opacity: 0.3;
+        /* Reduce opacity slightly more since text might overlap */
+    }
+
+    /* Footer Group */
+    .footer-group {
+        padding: 0 var(--page-margin) 48px;
+    }
+}
+
+/* Mobile (<= 430px) */
+@media (max-width: 430px) {
+    :root {
+        --page-margin: 16px;
+    }
+
+    /* Global text alignment for mobile readability */
+    h1,
+    h2,
+    .h3 {
+        word-wrap: break-word;
+        /* Ensure fallback */
+    }
+
+    /* Stack everything */
+    .nav-container {
+        align-items: stretch;
+    }
+
+    .nav-container .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-content {
+        padding: 32px 20px;
+        align-items: center;
+        /* Changed from flex-start to match centered text */
+        text-align: center;
+        /* Explicitly set to center, though it inherits from base now */
+    }
+
+    /* Building Section */
+    .stilly-overlay .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Follow Grid - 1 Column */
+    .follow-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .follow-card .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-social {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .quote-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Footer */
+    .footer-container {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
     }
 }
 
